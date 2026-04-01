@@ -1,0 +1,237 @@
+:root {
+  --papaya: #f7d6e0;
+  --morado: #e7c6ff;
+  --turquesa: #cceaea;
+  --turquesa-soft: #b8e0e0;
+  --text-main: #3a3a3a;
+  --border-soft: #e6e1d9;
+
+  --bg: #f8f6fb;
+  --card: rgba(255, 255, 255, 0.9);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Contenedor específico para facturas */
+.invoices-admin-container {
+  padding: 30px;
+  margin: 40px;
+  background: rgba(255,255,255,0.88); 
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+}
+
+.invoices-admin-container.flat {
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding: 30px;
+  margin: 30px;
+}
+
+.invoices-admin-container h1 {
+  margin-bottom: 10px;
+  color: var(--text-main);
+  font-size: 28px;
+}
+
+.invoices-admin-container .muted {
+  color: #666;
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+/* Filtro de facturas */
+.invoice-filter-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.invoice-filter-btn {
+  min-width: 180px;
+  width: auto;
+}
+
+/* Tabla de facturas */
+.invoices-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-size: 14px;
+}
+
+.invoices-admin-table th,
+.invoices-admin-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 8px;
+}
+
+.invoices-admin-table thead {
+  background: linear-gradient(135deg, var(--morado), var(--papaya));
+  color: #3a3a3a;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.invoices-admin-table tr:nth-child(even) {
+  background-color: #f9f4fa;
+}
+
+.invoices-admin-table tr:hover {
+  background-color: #f1e9f5;
+}
+
+.invoices-admin-table .empty {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Badges de estado */
+.invoices-admin-table .badge {
+  padding: 5px 10px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+  min-width: 90px;
+}
+
+.invoices-admin-table .bg-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.invoices-admin-table .bg-warning {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.invoices-admin-table .bg-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Botones de acciones */
+.invoices-actions-vertical {
+  display: flex;
+  flex-direction: column;   
+  align-items: center;
+  gap: 6px;
+}
+
+.invoices-actions-vertical .invoices-btn {
+  width: auto;              
+  min-width: 120px;
+  height: 34px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #3a3a3a;
+  font-size: 13px;
+  
+  background: linear-gradient(135deg, var(--papaya), var(--morado));
+  transition: transform 0.08s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.invoices-actions-vertical .invoices-btn:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.invoices-actions-vertical .invoices-btn:active {
+  transform: scale(0.97);
+}
+
+/* Paginación - específica para facturas */
+.invoices-pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 15px 0;
+}
+
+.invoices-pagination-numbers {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.invoices-page-btn {
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  background: #f2f2f2;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  min-width: 35px;
+  font-weight: 500;
+}
+
+.invoices-page-btn:hover {
+  background: #e0e0e0;
+}
+
+.invoices-page-btn.active {
+  background: rgb(224, 163, 203);
+  color: white;
+  font-weight: bold;
+}
+
+.invoices-pagination-btn {
+  height: 34px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #3a3a3a;
+  padding: 0 18px;
+  font-size: 16px;
+  
+  background: linear-gradient(135deg, var(--papaya), var(--morado));
+  transition: transform 0.08s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.invoices-pagination-btn:hover:not(:disabled) {
+  filter: brightness(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.invoices-pagination-btn:active {
+  transform: scale(0.97);
+}
+
+.invoices-pagination-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .invoices-admin-table {
+    font-size: 12px;
+  }
+
+  .invoices-admin-table th,
+  .invoices-admin-table td {
+    padding: 8px 6px;
+  }
+
+  .invoices-pagination-container {
+    gap: 8px;
+  }
+  
+}

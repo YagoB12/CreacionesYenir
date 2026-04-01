@@ -1,0 +1,13 @@
+.menu-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+.cart-row {
+  display: block;
+  gap: 1px; /* controla el espacio ENTRE tabla y resumen */
+}
+.cart-row > [class*="col-"] {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}

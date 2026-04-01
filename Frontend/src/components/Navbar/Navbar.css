@@ -1,0 +1,31 @@
+.navbar-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-weight: 600;
+  color: #000;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.menu-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  
+}
+
+.navbar {
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-visible {
+  transform: translateY(0);
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
+}

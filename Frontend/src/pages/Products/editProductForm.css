@@ -1,0 +1,71 @@
+.file-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.product-form--in-modal {
+  display: block !important;
+}
+
+.input-file {
+  position: relative;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px dashed var(--border-soft);
+  background: #fff;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.input-file input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-hint {
+  font-size: 13px;
+  color: #666;
+}
+
+.preview-wrap {
+  margin-top: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.preview-img {
+  width: 100%;
+  height: clamp(220px, 35vh, 380px);
+  object-fit: contain;
+  background: #fafafa;
+  display: block;
+}
+
+.preview-footer {
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #666;
+}
+
+.btn.small {
+  min-width: auto;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 12px;
+}
+
+.btn.danger-soft {
+  background: linear-gradient(135deg, #ffe3ea, #ffd0db);
+}

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend-yenir", "backend-yenir.csproj", "{34A37A88-865D-42CF-5ED9-062C9028CD8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend-yenirTests", "..\backend-yenirTests\backend-yenirTests.csproj", "{1DA0F486-A00B-4538-A6F5-D0B5D8FB7ED8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34A37A88-865D-42CF-5ED9-062C9028CD8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A37A88-865D-42CF-5ED9-062C9028CD8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A37A88-865D-42CF-5ED9-062C9028CD8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A37A88-865D-42CF-5ED9-062C9028CD8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DA0F486-A00B-4538-A6F5-D0B5D8FB7ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DA0F486-A00B-4538-A6F5-D0B5D8FB7ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DA0F486-A00B-4538-A6F5-D0B5D8FB7ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DA0F486-A00B-4538-A6F5-D0B5D8FB7ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C65C4B0-5D32-4ABF-BABA-796DA07FBD67}
+	EndGlobalSection
+EndGlobal

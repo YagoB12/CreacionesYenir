@@ -1,0 +1,6 @@
+@backend_yenir_HostAddress = http://localhost:5124
+
+GET {{backend_yenir_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

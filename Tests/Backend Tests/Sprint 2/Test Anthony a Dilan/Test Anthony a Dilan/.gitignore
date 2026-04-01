@@ -1,0 +1,61 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Folders
+bin/
+obj/
+Debug/
+Release/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+*.psmdcp
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.nuget.cache
+
+# ASP.NET / .NET Core
+appsettings.Development.json
+appsettings.Local.json
+*.db
+*.log
+*.pid
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs
+*.log
+*.vsix
+
+# Roslyn
+*.cache
+
+# Others
+*.DS_Store
+*.pdb
+*.exe
+*.dll
+*.deps.json
+*.runtimeconfig.json

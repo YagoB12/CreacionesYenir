@@ -1,0 +1,36 @@
+import { test, expect } from '@playwright/test';
+
+test('test de creacion factura', async ({ page }) => {
+  await page.goto('http://localhost:5173/home');
+  await page.getByRole('link', { name: 'Iniciar Sesión' }).click();
+  await page.locator('input[type="email"]').click();
+  await page.locator('input[type="email"]').fill('juan@test.com');
+  await page.locator('input[type="password"]').click();
+  await page.locator('input[type="password"]').press('CapsLock');
+  await page.locator('input[type="password"]').fill('P');
+  await page.locator('input[type="password"]').press('CapsLock');
+  await page.locator('input[type="password"]').fill('Password123');
+  await page.getByRole('button', { name: 'Iniciar sesión' }).click();
+  await page.getByRole('button', { name: 'Aceptar' }).click();
+  await page.getByRole('button', { name: '🛒 Agregar al carrito' }).nth(1).click();
+  await page.getByRole('button', { name: 'Aceptar' }).click();
+  await page.locator('#navbarMain path').click();
+  await page.getByRole('button', { name: 'Finalizar compra' }).click();
+  await page.getByRole('button', { name: 'Choose File' }).click();
+  await page.getByRole('button', { name: 'Choose File' }).setInputFiles('pruebSinpe.jpg');
+  await page.getByRole('button', { name: 'Confirmar compra' }).click();
+  await page.getByRole('button', { name: 'Sí' }).click();
+  await page.getByRole('button', { name: 'Aceptar' }).click();
+  await page.getByRole('button', { name: 'D Diego Bonilla' }).click();
+  await page.getByRole('button', { name: 'Cerrar Sesión' }).click();
+  await page.locator('input[type="email"]').click();
+  await page.locator('input[type="email"]').fill('ldiegobonillaib@gmail.com');
+  await page.locator('input[type="password"]').click();
+  await page.locator('input[type="password"]').press('CapsLock');
+  await page.locator('input[type="password"]').fill('D');
+  await page.locator('input[type="password"]').press('CapsLock');
+  await page.locator('input[type="password"]').fill('Diego12345');
+  await page.getByRole('button', { name: 'Iniciar sesión' }).click();
+  await page.getByRole('button', { name: 'Aceptar' }).click();
+  await page.getByText('Facturas').click();
+});

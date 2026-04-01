@@ -1,0 +1,26 @@
+.swal2-container {
+  z-index: 99999 !important;
+}
+
+.alert-popup {
+  border-radius: 16px;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.alert-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.alert-confirm {
+  border-radius: 999px !important;
+  padding: 8px 22px !important;
+  font-weight: 600;
+}
+
+.alert-cancel {
+  border-radius: 999px !important;
+  padding: 8px 22px !important;
+  font-weight: 600;
+}

@@ -1,0 +1,90 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+
+.sidebar {
+  width: 240px;
+  background-color: #e9a7cb;
+  color: #3A3A3A;
+  padding: 20px;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px;
+  margin: 8px 0;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.sidebar li:hover {
+  background-color: #f3c7df;
+}
+
+
+.main-content {
+  flex: 1;
+  background-color: #f4f6f8;
+}
+
+.menu-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.logo-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;      
+  object-fit: cover;
+  background: white;
+  padding: 3px;
+}
+.logo-container1 {
+  background-color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.logo-img1 {
+  width: 110px;   /* ancho mayor */
+  height: 60px;   /* alto menor */
+  object-fit: contain; /* ideal para logos rectangulares */
+}
+
+
+.logo-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #3A3A3A;
+}
+.logo-img {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.sidebar li.active {
+  background-color: #f7cfe3;   /* más claro que el sidebar */
+  font-weight: bold;
+  box-shadow: inset 3px 0 0 #d96aa7; /* barrita lateral */
+}

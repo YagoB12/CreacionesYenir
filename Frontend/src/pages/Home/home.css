@@ -1,0 +1,696 @@
+/* ═══════════════════════════════════════════════════════════════
+   HOME PAGE — Creaciones Yenir
+   Paleta: #e9a7cb (rosa), #f7d6e0 (papaya), #e7c6ff (morado),
+           #cceaea (turquesa), #3a3a3a (texto)
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Variables ──────────────────────────────────────────────── */
+:root {
+  --hy-pink:     #e9a7cb;
+  --hy-papaya:   #f7d6e0;
+  --hy-morado:   #e7c6ff;
+  --hy-turquesa: #cceaea;
+  --hy-text:     #3a3a3a;
+  --hy-muted:    #888;
+  --hy-white:    #ffffff;
+  --hy-bg:       #f8f6fb;
+  --hy-radius:   16px;
+  --hy-shadow:   0 8px 32px rgba(0,0,0,0.09);
+  --hy-shadow-sm:0 3px 12px rgba(0,0,0,0.07);
+}
+
+/* ── Reset & base ───────────────────────────────────────────── */
+.hy-root {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--hy-text);
+  overflow-x: hidden;
+  background: var(--hy-bg);
+}
+
+/* ── ADMIN panel (sin cambios) ──────────────────────────────── */
+.home-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-background {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/images/prototipo.png");
+  background-size: 60%;
+  background-position: 50% center;
+  background-repeat: no-repeat;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════════════ */
+.hy-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.hy-hero__carousel {
+  width: 100%;
+  height: 100%;
+}
+
+.hy-hero__img {
+  width: 100%;
+  height: 100vh;
+  min-height: 520px;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.65);
+}
+
+/* texto sobre el carrusel */
+.hy-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(233,167,203,0.22) 0%,
+    rgba(231,198,255,0.18) 100%
+  );
+}
+
+.hy-hero__content {
+  text-align: center;
+  color: var(--hy-white);
+  padding: 0 1.5rem;
+  pointer-events: all;
+  animation: hyFadeUp 0.9s ease both;
+}
+
+@keyframes hyFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hy-hero__badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: var(--hy-white);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+}
+
+.hy-hero__title {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 3px 16px rgba(0,0,0,0.35);
+}
+
+.hy-hero__tagline {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 300;
+  opacity: 0.92;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* ── Botones hero ───────────────────────────────────────────── */
+.hy-btn {
+  display: inline-block;
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.hy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.hy-btn--primary {
+  background: linear-gradient(135deg, var(--hy-pink), var(--hy-morado));
+  color: #fff;
+  border: none;
+}
+.hy-btn--primary:hover {
+  background: linear-gradient(135deg, #d990bc, #d4b0f0);
+  color: #fff;
+}
+
+.hy-btn--outline {
+  background: transparent;
+  color: var(--hy-white);
+  border: 2px solid rgba(255,255,255,0.75);
+}
+.hy-btn--outline:hover {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border-color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ESTADÍSTICAS
+══════════════════════════════════════════════════════════════ */
+.hy-stats {
+  background: linear-gradient(135deg, var(--hy-pink) 0%, var(--hy-morado) 100%);
+  padding: 0;
+}
+
+.hy-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.2rem 1rem;
+  border-right: 1px solid rgba(255,255,255,0.25);
+  transition: background 0.25s;
+}
+.hy-stat-card:last-child { border-right: none; }
+.hy-stat-card:hover { background: rgba(255,255,255,0.12); }
+
+.hy-stat-card__value {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--hy-white);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.hy-stat-card__label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECCIONES BASE
+══════════════════════════════════════════════════════════════ */
+.hy-section {
+  padding: 80px 0;
+}
+.hy-section--light {
+  background: var(--hy-white);
+}
+.hy-section--catalog {
+  background: var(--hy-white);
+  padding: 80px 0 100px;
+}
+.hy-section--gradient {
+  background: linear-gradient(160deg, var(--hy-bg) 0%, #ede8f7 100%);
+}
+.hy-section--values {
+  background: linear-gradient(135deg, #fdf0f7 0%, #ede8ff 100%);
+}
+
+/* encabezados de sección */
+.hy-section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.hy-section-header__chip {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--hy-papaya), var(--hy-morado));
+  color: #7b3fa0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+}
+.hy-section-header__chip--dark {
+  background: rgba(255,255,255,0.25);
+  color: var(--hy-text);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.hy-section-header__title {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: var(--hy-text);
+  margin-bottom: 0.6rem;
+}
+.hy-section-header__sub {
+  font-size: 1rem;
+  color: var(--hy-muted);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TARJETAS DE CATEGORÍAS
+══════════════════════════════════════════════════════════════ */
+.hy-cat-card {
+  background: var(--cat-color, #f7d6e0);
+  border-radius: var(--hy-radius);
+  padding: 2rem 1.25rem;
+  text-align: center;
+  height: 100%;
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: default;
+}
+.hy-cat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--hy-shadow);
+}
+.hy-cat-card__icon {
+  font-size: 2.6rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.hy-cat-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--hy-text);
+  margin-bottom: 0.4rem;
+}
+.hy-cat-card__desc {
+  font-size: 0.82rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CARRUSEL SECUNDARIO (Accesorios & Hogar)
+══════════════════════════════════════════════════════════════ */
+.hy-items-carousel__inner {
+  border-radius: var(--hy-radius);
+  overflow: hidden;
+  box-shadow: var(--hy-shadow);
+}
+.hy-items-carousel__img {
+  height: 480px;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.82);
+  border-radius: var(--hy-radius);
+}
+
+.hy-carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--hy-pink) !important;
+  opacity: 0.5;
+  border: none !important;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.hy-carousel-indicators .active {
+  opacity: 1 !important;
+  transform: scale(1.3);
+}
+
+.hy-carousel-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  color: var(--hy-text);
+  font-size: 1.8rem;
+  line-height: 1;
+  font-weight: 300;
+  box-shadow: var(--hy-shadow-sm);
+  transition: background 0.2s, transform 0.2s;
+}
+.hy-carousel-arrow:hover {
+  background: var(--hy-white);
+  transform: scale(1.1);
+}
+
+.hy-carousel-caption {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%);
+  padding: 0;
+  width: auto;
+  text-align: center;
+}
+.hy-carousel-caption__badge {
+  background: rgba(255,255,255,0.9);
+  color: var(--hy-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 20px;
+  border-radius: 50px;
+  box-shadow: var(--hy-shadow-sm);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SOBRE NOSOTROS
+══════════════════════════════════════════════════════════════ */
+.hy-about__img-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.hy-about__img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: calc(var(--hy-radius) * 2);
+  box-shadow: var(--hy-shadow);
+}
+.hy-about__badge {
+  position: absolute;
+  bottom: 24px;
+  right: -16px;
+  background: linear-gradient(135deg, var(--hy-pink), var(--hy-morado));
+  color: var(--hy-white);
+  padding: 16px 24px;
+  border-radius: var(--hy-radius);
+  text-align: center;
+  box-shadow: var(--hy-shadow);
+}
+.hy-about__badge-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.hy-about__badge-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+.hy-about__title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--hy-text);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+.hy-about__text {
+  font-size: 1.02rem;
+  color: #555;
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+
+.hy-about__pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.hy-pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  background: var(--hy-bg);
+  border-radius: var(--hy-radius);
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--hy-pink);
+}
+.hy-pillar__icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   VALORES
+══════════════════════════════════════════════════════════════ */
+.hy-value-card {
+  background: var(--hy-white);
+  border-radius: var(--hy-radius);
+  padding: 2rem 1.25rem;
+  text-align: center;
+  height: 100%;
+  box-shadow: var(--hy-shadow-sm);
+  transition: transform 0.25s, box-shadow 0.25s;
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(135deg, var(--hy-pink), var(--hy-morado)) 1;
+}
+.hy-value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--hy-shadow);
+}
+.hy-value-card__icon {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.hy-value-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--hy-text);
+  margin-bottom: 0.5rem;
+}
+.hy-value-card__text {
+  font-size: 0.82rem;
+  color: var(--hy-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CTA / CONTACTO
+══════════════════════════════════════════════════════════════ */
+.hy-cta {
+  background: linear-gradient(135deg, var(--hy-pink) 0%, var(--hy-morado) 100%);
+  padding: 80px 1rem;
+}
+.hy-cta__title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: var(--hy-white);
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.hy-cta__sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 2rem;
+}
+.hy-cta__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.hy-cta__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(6px);
+  color: var(--hy-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 10px 22px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.4);
+  transition: background 0.2s, transform 0.2s;
+}
+.hy-cta__link:hover {
+  background: rgba(255,255,255,0.36);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════════ */
+.hy-footer {
+  background: #2a1a38;
+  padding: 28px 1rem;
+}
+.hy-footer__text {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.88rem;
+}
+.hy-footer__sub {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.78rem;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECCIÓN CATÁLOGO — ajustes de integración
+══════════════════════════════════════════════════════════════ */
+#catalogo .hy-section-header {
+  text-align: center;
+}
+
+/* ── Botones hero: flex row centrado en desktop ─────────────── */
+.hy-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE — tablet ancho (≤ 991px)
+══════════════════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+  .hy-about__img   { height: 320px; }
+  .hy-about__badge { right: 12px; }
+
+  /* Sobre Nosotros: centrar texto cuando se apila */
+  .hy-about__title { text-align: center; }
+  .hy-about__text  { text-align: center; }
+  .hy-about__pillars { align-items: center; }
+  .hy-pillar       { width: 100%; }
+  /* chip "Nuestra Historia" centrado */
+  .col-lg-6 > .hy-section-header__chip { display: block; text-align: center; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE — tablet (≤ 767px)
+══════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* Secciones */
+  .hy-section         { padding: 48px 0; }
+  .hy-section--catalog{ padding: 48px 0 60px; }
+  .hy-section-header  { margin-bottom: 1.75rem; }
+  .hy-section-header__sub { font-size: 0.88rem; }
+
+  /* Hero */
+  .hy-hero           { height: 70vh; min-height: 380px; }
+  .hy-hero__carousel { height: 70vh; min-height: 380px; }
+  .hy-hero__img      { height: 70vh; min-height: 380px; }
+  .hy-hero__content  { padding: 0 1rem; }
+
+  /* Stats — 2×2: quitar borde derecho en posiciones pares */
+  .hy-stat-card {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 1.4rem 0.5rem;
+  }
+  .hy-stat-card:last-child { border-bottom: none; }
+  .hy-stat-card:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .hy-stat-card:nth-child(3) { border-bottom: none; }
+
+  /* Categorías — reducir padding interno */
+  .hy-cat-card       { padding: 1.25rem 0.75rem; }
+  .hy-cat-card__icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .hy-cat-card__title{ font-size: 0.88rem; }
+  .hy-cat-card__desc { display: none; }
+
+  /* Carrusel secundario */
+  .hy-items-carousel__img  { height: 240px; }
+  .hy-dual-carousel__img   { height: 200px; }
+
+  /* About — centrar columna de texto al apilarse */
+  .hy-about__img   { height: 240px; }
+  .hy-about__badge {
+    right: 12px;
+    bottom: 12px;
+    padding: 12px 16px;
+  }
+  .hy-about__badge-value { font-size: 1.5rem; }
+  .hy-about__text  { font-size: 0.92rem; text-align: center; }
+  .hy-about__title { text-align: center; }
+  .hy-about__pillars { align-items: center; }
+  .hy-pillar       { width: 100%; }
+
+  /* Valores — centrar contenido */
+  .hy-value-card   { padding: 1.25rem 0.75rem; text-align: center; }
+  .hy-value-card__icon { font-size: 1.8rem; }
+
+  /* CTA */
+  .hy-cta          { padding: 48px 1rem; }
+  .hy-cta__contacts{ flex-direction: column; align-items: center; }
+  .hy-cta__link    { width: 100%; max-width: 320px; justify-content: center; }
+
+  /* Botones hero */
+  .hy-btn          { padding: 11px 24px; font-size: 0.88rem; }
+
+  /* Chips sueltos dentro de columnas (ej: "Nuestra Historia") */
+  [class*="col-"] > .hy-section-header__chip {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE — móvil (≤ 480px)
+══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  /* Secciones */
+  .hy-section         { padding: 36px 0; }
+  .hy-section--catalog{ padding: 36px 0 48px; }
+  .hy-section-header  { margin-bottom: 1.25rem; }
+
+  /* Hero */
+  .hy-hero           { height: 62vh; min-height: 340px; }
+  .hy-hero__carousel { height: 62vh; min-height: 340px; }
+  .hy-hero__img      { height: 62vh; min-height: 340px; }
+  .hy-hero__badge    { font-size: 0.68rem; padding: 4px 12px; }
+  .hy-hero__title    { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .hy-hero__tagline  { font-size: 0.88rem; margin-bottom: 1.25rem; }
+  .hy-hero__actions  { flex-direction: column; width: 100%; gap: 0.5rem; }
+  .hy-btn            { width: 100%; text-align: center; padding: 12px 16px; }
+
+  /* Stats */
+  .hy-stat-card__value { font-size: 1.6rem; }
+  .hy-stat-card__label { font-size: 0.7rem; }
+
+  /* About: ocultar badge en pantallas muy pequeñas */
+  .hy-about__badge { display: none; }
+  .hy-about__img   { height: 200px; border-radius: var(--hy-radius); }
+
+  /* Valores: 1 columna */
+  .hy-value-card   { padding: 1rem 0.75rem; }
+
+  /* CTA */
+  .hy-cta__title   { font-size: 1.3rem; }
+  .hy-cta__sub     { font-size: 0.88rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CARRUSELES DOBLES (Catálogo — Ropa | Accesorios)
+══════════════════════════════════════════════════════════════ */
+.hy-dual-carousel__label { margin-bottom: 0.75rem; }
+
+.hy-dual-carousel__inner {
+  border-radius: var(--hy-radius);
+  overflow: hidden;
+  box-shadow: var(--hy-shadow);
+}
+
+.hy-dual-carousel__img {
+  height: 340px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--hy-radius);
+}
+
+@media (max-width: 767px) {
+  .hy-dual-carousel__img { height: 200px; }
+}
