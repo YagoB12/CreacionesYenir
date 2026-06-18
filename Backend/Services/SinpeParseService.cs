@@ -175,28 +175,76 @@ namespace backend_yenir.Services
             return Regex.Replace(value, @"\s+", " ").Trim();
         }
 
-        private decimal? ExtractAmount(string text)
+        private decimal? ParseAmount(string value)
         {
-            var match =
-                Regex.Match(text, @"MONTO\s+TRANSFERIDO\s+[¢₡£]?\s*([\d\.\,]+)", RegexOptions.IgnoreCase) ??
-                Regex.Match(text, @"MONTO\s+DEPOSITADO\s+[¢₡£]?\s*([\d\.\,]+)", RegexOptions.IgnoreCase) ??
-                Regex.Match(text, @"MONTO\s+TRANSFERENCIA:?\s+[¢₡£]?\s*([\d\.\,]+)", RegexOptions.IgnoreCase) ??
-                Regex.Match(text, @"MONTO\s+ACREDITADO:?\s+[¢₡£]?\s*([\d\.\,]+)", RegexOptions.IgnoreCase) ??
-                Regex.Match(text, @"[¢₡£]\s*([\d\.\,]+)", RegexOptions.IgnoreCase);
+            value = value.Trim();
 
-            if (!match.Success)
-                return null;
+            int lastDot = value.LastIndexOf('.');
+            int lastComma = value.LastIndexOf(',');
 
-            var amountText = match.Groups[1].Value
-                .Replace(".", "")
-                .Replace(",", ".");
+            string normalized;
+
+            if (lastDot > lastComma)
+            {
+                // Formato tipo 2,500.00
+                normalized = value.Replace(",", "");
+            }
+            else if (lastComma > lastDot)
+            {
+                // Formato tipo 5.000,00
+                normalized = value.Replace(".", "").Replace(",", ".");
+            }
+            else
+            {
+                normalized = value;
+            }
 
             return decimal.TryParse(
-                amountText,
+                normalized,
                 NumberStyles.Any,
                 CultureInfo.InvariantCulture,
                 out var amount
             ) ? amount : null;
+        }
+
+        private decimal? ExtractAmount(string text)
+        {
+            var patterns = new[]
+            {
+        // BCR
+        @"MONTO\s+TRANSFERIDO\s+[¢₡£%]?\s*([\d\.,]+)",
+
+        // Popular
+        @"MONTO\s+DEBITADO\s+[¢₡£%]?\s*([\d\.,]+)",
+        @"MONTO\s+DEPOSITADO\s+[¢₡£%]?\s*([\d\.,]+)",
+
+        // BN: monto antes de la etiqueta
+        @"([\d\.,]+)\s+COLONES\s+MONTO\s+TRANSFERENCIA",
+        @"([\d\.,]+)\s+COLONES\s+MONTO\s+ACREDITADO",
+        @"([\d\.,]+)\s+COLONES\s+MONTO\s+DEBITADO",
+
+        // BN u otros: monto después de la etiqueta
+        @"MONTO\s+TRANSFERENCIA:?\s+[¢₡£%]?\s*([\d\.,]+)",
+        @"MONTO\s+ACREDITADO:?\s+[¢₡£%]?\s*([\d\.,]+)",
+        @"MONTO\s+DEBITADO:?\s+[¢₡£%]?\s*([\d\.,]+)",
+
+        // fallback general con símbolo
+        @"[¢₡£%]\s*([\d\.,]+)"
+    };
+
+            foreach (var pattern in patterns)
+            {
+                var match = Regex.Match(
+                    text,
+                    pattern,
+                    RegexOptions.IgnoreCase | RegexOptions.Singleline
+                );
+
+                if (match.Success)
+                    return ParseAmount(match.Groups[1].Value);
+            }
+
+            return null;
         }
 
         private DateTime? ParseDate(string date)
