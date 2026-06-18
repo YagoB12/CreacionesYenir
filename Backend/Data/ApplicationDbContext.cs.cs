@@ -21,6 +21,7 @@ namespace backend_yenir.Data
         public DbSet<Bill> Bills { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+        public DbSet<PaymentSinpeInfo> PaymentSinpeInfos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

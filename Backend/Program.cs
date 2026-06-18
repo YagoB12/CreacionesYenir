@@ -34,6 +34,8 @@ builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<BillPdfService>();
 builder.Services.AddScoped<EmailTemplateService>();
+builder.Services.AddScoped<OcrService>();
+builder.Services.AddScoped<SinpeParserService>();
 
 builder.Services.AddCors(options =>
 {
