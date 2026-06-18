@@ -1,12 +1,13 @@
 ﻿using System.Security.Claims;
 using backend_yenir.Data;
 using backend_yenir.DTOs.Payments;
-using backend_yenir.DTOs.Products;
 using backend_yenir.Models;
 using backend_yenir.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using backend_yenir.DTOs.Bills;
+using Microsoft.AspNetCore.Hosting;
 
 namespace backend_yenir.Controllers
 {
@@ -17,12 +18,18 @@ namespace backend_yenir.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ImageService _imageService;
+        private readonly OcrService _ocrService;
+        private readonly SinpeParserService _sinpeParserService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         // Constructor
-        public BillController(ApplicationDbContext context, ImageService imageService)
+        public BillController(ApplicationDbContext context, ImageService imageService, OcrService ocrService, SinpeParserService sinpeParserService, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _imageService = imageService;
+            _ocrService = ocrService;
+            _sinpeParserService = sinpeParserService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost("create")]
@@ -93,6 +100,54 @@ namespace backend_yenir.Controllers
 
             _context.Payments.Add(payment); //       Guarda directamente
             await _context.SaveChangesAsync();
+
+            PaymentSinpeInfoDTO? sinpeInfoDto = null;
+
+            if (!string.IsNullOrEmpty(imagePath))
+            {
+                try
+                {
+                  
+                    string fullImagePath = Path.Combine(
+                        _webHostEnvironment.WebRootPath,
+                        imagePath.Replace("/", Path.DirectorySeparatorChar.ToString())
+                    );
+
+                    if (!System.IO.File.Exists(fullImagePath))
+                    {
+                        Console.WriteLine("No se encontró la imagen.");
+                    }
+                    else
+                    {
+                        var extractedText = _ocrService.ExtractText(fullImagePath);
+
+                        Console.WriteLine("Texto OCR "+extractedText);
+
+                        var sinpeInfo = _sinpeParserService.Parse(extractedText, payment.Id);
+
+                        _context.PaymentSinpeInfos.Add(sinpeInfo);
+                        var rows = await _context.SaveChangesAsync();
+
+                        Console.WriteLine($"Filas guardadas: {rows}");
+                
+
+                        sinpeInfoDto = new PaymentSinpeInfoDTO
+                        {
+                            Bank = sinpeInfo.Bank,
+                            ReferenceNumber = sinpeInfo.ReferenceNumber,
+                            TransferDate = sinpeInfo.TransferDate,
+                            TransferTime = sinpeInfo.TransferTime,
+                            DestinationName = sinpeInfo.DestinationName,
+                            DestinationPhone = sinpeInfo.DestinationPhone
+                        };
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: "+ex.ToString());
+                }
+            }
+
 
             // NUEVO PEDIDO (ORDER)
             //Después de guardar el Payment, ahora:....Eso crea el pedido ligado al pago.
