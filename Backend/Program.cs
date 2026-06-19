@@ -36,7 +36,7 @@ builder.Services.AddScoped<BillPdfService>();
 builder.Services.AddScoped<EmailTemplateService>();
 builder.Services.AddScoped<OcrService>();
 builder.Services.AddScoped<SinpeParserService>();
-
+builder.Services.AddScoped<PaymentValidationService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
