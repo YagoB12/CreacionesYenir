@@ -21,15 +21,17 @@ namespace backend_yenir.Controllers
         private readonly OcrService _ocrService;
         private readonly SinpeParserService _sinpeParserService;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly PaymentValidationService _paymentValidationService;
 
         // Constructor
-        public BillController(ApplicationDbContext context, ImageService imageService, OcrService ocrService, SinpeParserService sinpeParserService, IWebHostEnvironment webHostEnvironment)
+        public BillController(ApplicationDbContext context, ImageService imageService, OcrService ocrService, SinpeParserService sinpeParserService, IWebHostEnvironment webHostEnvironment, PaymentValidationService paymentValidationService)
         {
             _context = context;
             _imageService = imageService;
             _ocrService = ocrService;
             _sinpeParserService = sinpeParserService;
             _webHostEnvironment = webHostEnvironment;
+            _paymentValidationService = paymentValidationService;
         }
 
         [HttpPost("create")]
@@ -102,12 +104,13 @@ namespace backend_yenir.Controllers
             await _context.SaveChangesAsync();
 
             PaymentSinpeInfoDTO? sinpeInfoDto = null;
+            (int Score, string Result, int Status)? validation = null;
 
             if (!string.IsNullOrEmpty(imagePath))
             {
                 try
                 {
-                  
+
                     string fullImagePath = Path.Combine(
                         _webHostEnvironment.WebRootPath,
                         imagePath.Replace("/", Path.DirectorySeparatorChar.ToString())
@@ -121,16 +124,53 @@ namespace backend_yenir.Controllers
                     {
                         var extractedText = _ocrService.ExtractText(fullImagePath);
 
-                        Console.WriteLine("Texto OCR "+extractedText);
+                        Console.WriteLine("Texto OCR " + extractedText);
 
-                        var sinpeInfo = _sinpeParserService.Parse(extractedText, payment.Id);
+                        var sinpeInfo = _sinpeParserService.Parse(
+    extractedText,
+    payment.Id
+);
 
                         _context.PaymentSinpeInfos.Add(sinpeInfo);
+
                         var rows = await _context.SaveChangesAsync();
 
                         Console.WriteLine($"Filas guardadas: {rows}");
-                
 
+                        // =====================================
+                        // VALIDAR COMPROBANTE
+                        // =====================================
+
+                        validation =
+                            await _paymentValidationService
+                                .ValidateAsync(payment, sinpeInfo);
+
+                        Console.WriteLine($"Score: {validation.Value.Score}");
+                        Console.WriteLine($"Resultado: {validation.Value.Result}");
+                        Console.WriteLine($"Estado: {validation.Value.Status}");
+
+                        // =====================================
+                        // ACTUALIZAR ESTADO DEL PAGO
+                        // =====================================
+
+                        switch (validation.Value.Result)
+                        {
+                            case "APROBADO":
+                                payment.status = 2;
+                                break;
+
+                            case "REVISION_MANUAL":
+                                payment.status = 1;
+                                break;
+
+                            case "RECHAZADO":
+                                payment.status = 3;
+                                break;
+                        }
+
+                        await _context.SaveChangesAsync();
+
+                        // DTO para devolver al Front
                         sinpeInfoDto = new PaymentSinpeInfoDTO
                         {
                             Bank = sinpeInfo.Bank,
@@ -144,14 +184,14 @@ namespace backend_yenir.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: "+ex.ToString());
+                    Console.WriteLine("Error: " + ex.ToString());
                 }
             }
 
 
             // NUEVO PEDIDO (ORDER)
             //Después de guardar el Payment, ahora:....Eso crea el pedido ligado al pago.
-            payment.Order = new Order { DateEmission = DateTime.UtcNow, Status = 1 };
+            payment.Order = new Order { DateEmission = DateTime.UtcNow, Status = payment.status };
             await _context.SaveChangesAsync(); //Guarda cambios editados del modelo
 
             string numBill = $"FAC-{DateTime.UtcNow:yyyyMMdd}-{payment.Id}";
@@ -183,14 +223,29 @@ namespace backend_yenir.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(
-                new
-                {
-                    message = "Factura creada correctamente",
-                    billId = bill.Id,
-                    paymentId = payment.Id,
-                    total = totalGeneral,
-                }
-            );
+    new
+    {
+        message = "Factura creada correctamente",
+
+        billId = bill.Id,
+
+        paymentId = payment.Id,
+
+        total = totalGeneral,
+
+        paymentStatus = payment.status,
+
+        sinpeInfo = sinpeInfoDto,
+
+        ocrValidation = validation == null
+            ? null
+            : new
+            {
+                validation.Value.Score,
+                validation.Value.Result
+            }
+    }
+);
         }
 
         // GET: Endpoint: Listar facturas en verificación por parte del Administrador
