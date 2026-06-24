@@ -69,7 +69,8 @@ namespace backend_yenir.Services
         private void ParseBcr(string text, PaymentSinpeInfo info)
         {
             info.ReferenceNumber = Match(text, @"REFERENCIA\s+(\d{6,})");
-            info.DestinationPhone = Match(text, @"(\d{4}-?\d{4})");
+            info.DestinationPhone = Match(text, @"SINPE\s+M[ÓO]VIL\s+DESTINO\s+[A-ZÁÉÍÓÚÑ\s]+?\s+(\d{4}-?\d{4})");
+
             info.Amount = ExtractAmount(text);
 
             var date = Match(text, @"(\d{1,2}\s+DE\s+[A-ZÁÉÍÓÚÑ]+,?\s+\d{4})");
