@@ -104,7 +104,7 @@ namespace backend_yenir.Controllers
             await _context.SaveChangesAsync();
 
             PaymentSinpeInfoDTO? sinpeInfoDto = null;
-            (int Score, string Result)? validation = null;
+            (int Score, string Result, int Status)? validation = null;
 
             if (!string.IsNullOrEmpty(imagePath))
             {
@@ -147,6 +147,9 @@ namespace backend_yenir.Controllers
 
                         Console.WriteLine($"Score: {validation.Value.Score}");
                         Console.WriteLine($"Resultado: {validation.Value.Result}");
+
+                        Console.WriteLine($"Estado: {validation.Value.Status}");
+
 
                         // =====================================
                         // ACTUALIZAR ESTADO DEL PAGO
