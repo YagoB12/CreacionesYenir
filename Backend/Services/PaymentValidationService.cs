@@ -18,7 +18,7 @@ namespace backend_yenir.Services
 
 
         public async Task<(int Score, string Result, int Status)> ValidateAsync(
->>>>>>> dayana
+
             Payment payment,
             PaymentSinpeInfo sinpeInfo)
         {
@@ -109,7 +109,7 @@ namespace backend_yenir.Services
             Console.WriteLine($"Resultado final → Score: {score}, Resultado: {result}, Estado: {status}");
 
             return (score, result, status);
->>>>>>> dayana
+
         }
     }
 }
