@@ -14,6 +14,8 @@
 
         public string RawText { get; set; } = string.Empty;
 
+        public int? ValidationScore { get; set; }
+
         public int PaymentId { get; set; }
         public Payment Payment { get; set; } = null!;
     }

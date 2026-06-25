@@ -43,6 +43,7 @@ namespace backend_yenir.Controllers
                 .Payments.AsNoTracking()
                 .Include(p => p.User)
                 .Include(p => p.Bill)
+                .Include(p => p.SinpeInfo)
                 .Include(p => p.OrderDetails)
                     .ThenInclude(od => od.Product)
                 .OrderByDescending(p => p.DateCreate)
@@ -71,6 +72,19 @@ namespace backend_yenir.Controllers
                             p.Bill.DateEmission,
                             p.Bill.Status,
                             p.Bill.TotalAmount,
+                        },
+                     SinpeInfo = p.SinpeInfo == null
+                        ? null
+                        : new
+                        {
+                            p.SinpeInfo.Bank,
+                            p.SinpeInfo.ReferenceNumber,
+                            p.SinpeInfo.Amount,
+                            p.SinpeInfo.TransferDate,
+                            p.SinpeInfo.TransferTime,
+                            p.SinpeInfo.DestinationName,
+                            p.SinpeInfo.DestinationPhone,
+                            p.SinpeInfo.ValidationScore,
                         },
 
                     Details = p.OrderDetails.Select(od => new

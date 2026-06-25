@@ -150,6 +150,8 @@ namespace backend_yenir.Controllers
 
                         Console.WriteLine($"Estado: {validation.Value.Status}");
 
+                        sinpeInfo.ValidationScore = validation.Value.Score;
+
 
                         // =====================================
                         // ACTUALIZAR ESTADO DEL PAGO

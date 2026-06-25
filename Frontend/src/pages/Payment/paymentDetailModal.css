@@ -104,3 +104,38 @@
   border-radius: 16px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
+
+.validation-badge {
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.validation-aprobado {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.validation-revision {
+  background-color: #fef9c3;
+  color: #ca8a04;
+}
+
+.validation-rechazado {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+.validation-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.validation-text {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+}

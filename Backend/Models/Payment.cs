@@ -28,5 +28,7 @@ namespace backend_yenir.Models
 
         // Relación 1:1
         public Order Order { get; set; } = null!;
+
+        public PaymentSinpeInfo? SinpeInfo { get; set; }
     }
 }

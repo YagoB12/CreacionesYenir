@@ -52,7 +52,7 @@ namespace backend_yenir.Services
             }
 
             // VALIDAR TELÉFONO DESTINO
-            if (sinpeInfo.DestinationPhone == "8518-2008")
+            if (sinpeInfo.DestinationPhone == "8489-4808")
             {
                 Console.WriteLine($"Teléfono destino OK: {sinpeInfo.DestinationPhone}");
                 score += 20;
@@ -64,7 +64,7 @@ namespace backend_yenir.Services
        
             // VALIDAR NOMBRE DESTINO
             if (sinpeInfo.DestinationName?
-                .Contains("Aurora Baltodano Cordero", StringComparison.OrdinalIgnoreCase) == true)
+                .Contains("SAMUELS TORRES JALLMAR ANDRES", StringComparison.OrdinalIgnoreCase) == true)
             {
                 Console.WriteLine($"Nombre destino OK: {sinpeInfo.DestinationName}");
                 score += 20;

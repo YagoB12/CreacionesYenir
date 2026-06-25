@@ -22,6 +22,18 @@ export interface PaymentBill {
   totalAmount: number;
 }
 
+export interface PaymentSinpeInfo {
+  bank: string;
+  referenceNumber: string | null;
+  amount: number | null;
+  transferDate: string | null;
+  transferTime: string | null;
+  destinationName: string | null;
+  destinationPhone: string | null;
+  validationScore: number | null;
+}
+
+
 export interface Payment {
   id: number;
   dateCreate: string;
@@ -31,6 +43,7 @@ export interface Payment {
   user: PaymentUser;
   bill: PaymentBill | null;
   details: PaymentDetail[];
+  sinpeInfo: PaymentSinpeInfo | null;
 }
 
 export interface PaymentApiResponse {
