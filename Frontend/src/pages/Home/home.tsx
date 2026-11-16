@@ -1,14 +1,14 @@
-import "./Home.css";
+import "./home.css";
 import Dashboard from "../../components/Dashboard/dashboard";
 import CatalogProduct from "../Products/productCatalog";
 import Navbar from "../../components/Navbar/Navbar";
-import img1 from "../../assets/imageCarrucel/image1.jpg";
-import img2 from "../../assets/imageCarrucel/ropa.jpg";
-import img3 from "../../assets/imageCarrucel/image5.jpg";
-import img4 from "../../assets/imageCarrucel/image2.webp";
-import img5 from "../../assets/imageCarrucel/image3.webp";
-import img6 from "../../assets/imageCarrucel/tualla.jpg";
-import imgBebe from "../../assets/imageCarrucel/bebe.avif";
+import img1 from "../../assets/ImageCarrucel/image1.jpg";
+import img2 from "../../assets/ImageCarrucel/ropa.jpg";
+import img3 from "../../assets/ImageCarrucel/image5.jpg";
+import img4 from "../../assets/ImageCarrucel/image2.webp";
+import img5 from "../../assets/ImageCarrucel/image3.webp";
+import img6 from "../../assets/ImageCarrucel/tualla.jpg";
+import imgBebe from "../../assets/ImageCarrucel/bebe.avif";
 
 // ─── Datos editables de la empresa ──────────────────────────────────────────
 const COMPANY_INFO = {

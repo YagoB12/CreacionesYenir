@@ -3,7 +3,7 @@ import type {
   ProductBaseFields,
   ProductFromApi,
 } from "../../types/product.type";
-import "./CardProduct.css";
+import "./cardProduct.css";
 import { Alerts } from "../../utils/alerts";
 import type { AddToCartDTO, ShoppingCart } from "../../types/shoppingCart.type";
 import { addToCart } from "../../services/cart.Service";
